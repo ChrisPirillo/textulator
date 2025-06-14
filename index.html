@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="ChrisPirillo's Textulator: A powerful and fast online tool for all your text manipulation needs. Convert case, count words, generate UUIDs, encode/decode, and much more.">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical" href="https://pirillo.com/arcade/textulator.html"> <meta property="og:title" content="@ChrisPirillo's Textulator - Online Text Manipulation Tools">
+    <meta property="og:description" content="Quickly process and transform text with a wide array of tools. From case conversion to encoding, Textulator has you covered.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pirillo.com/arcade/textulator.html"> <meta property="og:image" content="https://www.example.com/textulator-og-image.png"> 
+    <meta property="og:image:alt" content="Screenshot of @ChrisPirillo's Textulator interface">
+    <meta property="og:site_name" content="@ChrisPirillo's Textulator">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ChrisPirillo"> 
+    <meta name="twitter:creator" content="@ChrisPirillo">
+    <meta name="twitter:title" content="@ChrisPirillo's Textulator - Fast Text Tools">
+    <meta name="twitter:description" content="Your go-to online utility for text manipulation, encoding, decoding, and generation.">
+    <meta name="twitter:image" content="https://pirillo.com/arcade/images/textulator.png"> 
+    <meta name="twitter:image:alt" content="Textulator application showing various text tools">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <title>@ChrisPirillo's Textulator - Online Text Manipulation Tools</title> 
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </noscript>
+    
+    <meta name="theme-color" content="#1ABC9C" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#2D3748" media="(prefers-color-scheme: dark)">
+
+    <style>
+        :root {
+            --bg-color: #f0f2f5; 
+            --text-color: #1c1e21; 
+            --header-bg: #1ABC9C; 
+            --header-text: #ffffff;
+            --sidebar-bg: #ffffff;
+            --sidebar-text: #333;
+            --sidebar-border: #ddd;
+            --button-bg: #e0f2f1; 
+            --button-text: #00695c; 
+            --button-border: #a7d7c5; 
+            --button-hover-bg: #b2dfdb; 
+            --button-hover-text: #004d40;
+            --dropdown-link-hover-text: var(--header-bg); 
+            --active-button-bg: #00796b; 
+            --active-button-text: #ffffff; 
+            --main-content-bg: #ffffff;
+            --controls-bg: transparent; 
+            --controls-border: transparent; 
+            --input-border: #ccc;
+            --input-focus-border: var(--header-bg); 
+            --footer-bg: #e9ecef;
+            --footer-text: #495057;
+            --shadow-color: rgba(0,0,0,0.1);
+            --modal-bg: #ffffff;
+            --modal-text-color: #1c1e21;
+            --modal-main-title-text-color: var(--text-color); 
+            --modal-border-color: #e0e0e0;
+            --modal-nav-button-bg: #e9ecef;
+            --modal-nav-button-text: #495057;
+            --modal-nav-button-hover-bg: #d0e7ff;
+            --modal-nav-button-active-bg: var(--header-bg);
+            --modal-nav-button-active-text: var(--header-text);
+            --modal-slide-title-color-distinct: #00796b; 
+            --modal-slide-icon-color: var(--header-bg); 
+            --modal-slide-strong-color: #00796b; 
+            --modal-footer-link-color: var(--header-bg);
+            --refresh-indicator-button-bg: #ffc107; 
+            --refresh-indicator-button-text: #212529; 
+            --font-primary: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-monospace: 'Courier Prime', monospace;
+            --textarea-font-size: 0.9em; 
+        }
+
+        body.dark-mode {
+            --bg-color: #171923; 
+            --text-color: #E2E8F0; 
+            --header-bg: #2D3748; 
+            --header-text: #E2E8F0; 
+            --sidebar-bg: #222B39; 
+            --sidebar-text: #CBD5E0; 
+            --sidebar-border: #3A475A; 
+            --button-bg: #3A475A; 
+            --button-text: #CBD5E0; 
+            --button-border: #4A5568; 
+            --button-hover-bg: #4A5568; 
+            --button-hover-text: #E2E8F0;
+            --dropdown-link-hover-text: #718096; 
+            --active-button-bg-dark-pronounced: #3182CE; 
+            --active-button-text-dark-pronounced: #FFFFFF; 
+            --active-button-border-dark-pronounced: #2B6CB0; 
+            --main-content-bg: #1A202C; 
+            --input-border: #4A5568; 
+            --input-focus-border: #718096; 
+            --footer-bg: #1A202C;
+            --footer-text: #A0AEC0;
+            --shadow-color: rgba(255,255,255,0.03);
+            --modal-bg: #2D3748; 
+            --modal-text-color: #E2E8F0;
+            --modal-main-title-text-color: var(--header-text); 
+            --modal-border-color: #4A5568;
+            --modal-nav-button-bg: #4A5568; 
+            --modal-nav-button-text: #E2E8F0;
+            --modal-nav-button-hover-bg: #718096; 
+            --modal-nav-button-active-bg: var(--header-bg); 
+            --modal-nav-button-active-text: var(--header-text);
+            --modal-slide-title-color-distinct: #A0AEC0; 
+            --modal-slide-icon-color: #A0AEC0; 
+            --modal-slide-strong-color: #CBD5E0; 
+            --modal-footer-link-color: #A0AEC0;
+            --refresh-indicator-button-bg: #FF8F00; 
+            --refresh-indicator-button-text: #1A202C;
+        }
+
+        html {
+            height: 100vh; /* Performance: Fix height to viewport */
+            overflow-y: hidden; /* Performance: Prevent scroll on html */
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            font-weight: 400; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-color); 
+            color: var(--text-color);
+            display: flex; 
+            flex-direction: column; 
+            height: 100%; /* Performance: Fill html height */
+            overflow: hidden; /* Performance: Prevent scroll on body */
+            transition: background-color 0.3s, color 0.3s;
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale; 
+        }
+
+        header { 
+            background-color: var(--header-bg); color: var(--header-text); padding: 10px 15px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 4px var(--shadow-color); position: relative; z-index: 1001; 
+            min-height: 50px; 
+            flex-shrink: 0; /* Performance: Header should not shrink */
+        }
+        header h1 { 
+            margin: 0; 
+            font-size: 1.4em; 
+            font-weight: 700; 
+            flex-grow: 1; 
+            display: flex;
+            justify-content: center; 
+            align-items: center;    
+            text-align: center;
+        }
+        .header-title-content { 
+             display: inline-flex; 
+             align-items: baseline;
+             flex-wrap: wrap; 
+             justify-content: center; 
+        }
+        .header-title-at { font-weight: 400; margin-right: 2px; } 
+        .header-actions { 
+            display: flex; align-items: center; gap: 10px; 
+            flex-shrink: 0; 
+        }
+        
+        .dropdown { position: relative; display: inline-block; vertical-align: baseline; }
+        .dropdown-toggle {
+            background: none; border: none; 
+            color: inherit; 
+            cursor: pointer;
+            font-size: inherit; font-weight: inherit; padding: 0; 
+            text-decoration: underline;
+            vertical-align: baseline; 
+        }
+        .dropdown-toggle:hover { text-decoration: none; }
+        
+        .dropdown-menu {
+            display: none; position: absolute; 
+            background-color: var(--sidebar-bg); 
+            min-width: 180px; 
+            box-shadow: 0px 8px 16px 0px var(--shadow-color);
+            z-index: 1000; border-radius: 5px; padding: 5px 0;
+            border: 1px solid var(--sidebar-border); 
+        }
+        #chrisPirilloDropdownContainer .dropdown-menu { 
+            top: 100%; left: 0; 
+        }
+
+        .dropdown-menu a, .dropdown-menu .dropdown-item-button-link { 
+            color: var(--sidebar-text); 
+            padding: 8px 12px; 
+            text-decoration: none;
+            display: block; font-size: 0.85em; 
+            white-space: nowrap;
+            background: none; border: none; width: 100%; text-align: left; cursor: pointer;
+            font-family: inherit; font-weight: 400; 
+            transition: color 0.2s ease, background-color 0.2s ease; 
+        }
+        .dropdown-menu a:hover, .dropdown-menu .dropdown-item-button-link:hover { 
+            background-color: var(--button-hover-bg) !important; 
+            color: var(--dropdown-link-hover-text) !important; 
+        }
+        .show-dropdown { display: block; }
+
+        .container { 
+            display: flex; 
+            flex-grow: 1; /* Performance: Takes remaining vertical space */
+            min-height: 0; /* Performance: Crucial for flex children to shrink within a fixed height parent */
+            margin: 10px; 
+            gap: 10px; 
+            overflow: hidden; /* Performance: Prevent this container from scrolling */
+        }
+
+        .tools-sidebar {
+            width: 240px; 
+            flex-shrink: 0; 
+            background-color: var(--sidebar-bg); 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 0 1px 3px var(--shadow-color);
+            display: flex; 
+            flex-direction: column; 
+            /* Performance: height will be determined by flex container (.container) */
+        }
+        .sidebar-header {
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            padding-bottom: 10px; 
+            margin-bottom: 10px;
+            gap: 8px; 
+            flex-shrink: 0; 
+        }
+        .tools-sidebar h2 { 
+            margin: 0 0 5px 0; 
+            font-size: 1.15em; 
+            color: var(--sidebar-text); 
+            font-weight: 700;
+            white-space: nowrap; 
+            flex-shrink: 0; 
+        }
+        #find-tool-input {
+            border: 1px solid var(--input-border); background-color: var(--bg-color); 
+            color: var(--text-color); border-radius: 4px; 
+            font-size: 0.8em; 
+            height: 30px; 
+            padding: 6px 8px; 
+            font-weight: 400;
+            width: 100%; 
+            max-width: none; 
+        }
+        #find-tool-input:focus { outline: none; border-color: var(--input-focus-border); }
+        
+        .tools-list-container { 
+            flex-grow: 1; /* Performance: Takes available space in sidebar */
+            min-height: 0; /* Performance: Allows shrinking if header is tall */
+            overflow-y: auto; /* Performance: THIS IS THE SCROLLABLE TOOLS LIST */
+            margin-top: 5px; 
+            -webkit-overflow-scrolling: touch; 
+        }
+        .tools-sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .tools-sidebar li button {
+            display: block; width: 100%; padding: 6px 6px; 
+            margin-bottom: 4px; 
+            background-color: var(--button-bg); color: var(--button-text);
+            border: 2px solid transparent; 
+            border-radius: 5px;
+            text-align: left; cursor: pointer; font-size: 0.8em; 
+            font-weight: 400;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s; 
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .tools-sidebar li button:hover {
+            background-color: var(--button-hover-bg); color: var(--button-hover-text);
+        }
+        .tools-sidebar li button.active-tool-button { 
+            background-color: var(--active-button-bg); color: var(--active-button-text);
+            font-weight: 700; border: 2px solid var(--input-focus-border); 
+        }
+        body.dark-mode .tools-sidebar li button.active-tool-button { 
+            background-color: var(--active-button-bg-dark-pronounced); 
+            color: var(--active-button-text-dark-pronounced); 
+            border: 2px solid var(--active-button-border-dark-pronounced); 
+        }
+        .hidden-tool {
+            display: none !important;
+        }
+
+        .main-content {
+            flex-grow: 1; /* Performance: Takes available space in .container */
+            min-height: 0; /* Performance: Allows shrinking */
+            background-color: var(--main-content-bg); 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 0 1px 3px var(--shadow-color);
+            display: flex; 
+            flex-direction: column; 
+            overflow: hidden; /* Performance: Prevent this area from scrolling */
+        }
+        
+        .controls { 
+            margin-bottom: 10px; 
+            padding: 8px 0;  
+            background-color: var(--controls-bg);
+            border-radius: 6px; border: 1px solid var(--controls-border);
+            min-height: 48px; 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-between;
+            align-items: center; gap: 8px; 
+            flex-shrink: 0; /* Performance: Controls should not shrink away */
+        }
+        .tool-specific-controls-container {
+            display: flex; flex-wrap: wrap; gap: 8px; 
+            align-items: center; flex-grow: 1; 
+        }
+        .control-group {
+            display: none; align-items: center; gap: 6px; 
+            flex-wrap: wrap; 
+        }
+        .control-group label { 
+            font-weight: 500; white-space: nowrap; color: var(--text-color); font-size: 0.85em; 
+            vertical-align: middle; 
+            margin-bottom: 4px; 
+        }
+        .control-group input[type="text"], 
+        .control-group input[type="number"],
+        .control-group select {
+            padding: 7px 9px; 
+            border: 1px solid var(--input-border); 
+            background-color: var(--main-content-bg); color: var(--text-color);
+            border-radius: 4px; font-size: 0.85em; 
+            height: 34px; 
+            font-family: var(--font-primary); font-weight: 400;
+            vertical-align: middle;
+            flex-grow: 1; 
+            min-width: 90px; 
+        }
+        .control-group input[type="text"] { min-width: 100px; }
+        .control-group input[type="number"] { width: 55px; } 
+        .control-group input[type="checkbox"] { 
+            height: auto; margin-right: 4px; vertical-align: middle;
+        }
+        .control-group input:focus, .control-group select:focus {
+            outline: none; border-color: var(--input-focus-border);
+        }
+        .control-group button {
+            padding: 7px 10px; 
+            background-color: var(--header-bg); 
+            color: var(--header-text); border: none; border-radius: 4px;
+            cursor: pointer; font-size: 0.85em; 
+            white-space: nowrap;
+            height: 34px; 
+            font-weight: 700;
+            vertical-align: middle;
+        }
+        .control-group button:hover { opacity: 0.85; }
+        .active-controls { display: flex !important; }
+        
+        .clear-all-btn-container { 
+            margin-left: auto; 
+            padding-right: 0; 
+            flex-shrink: 0; 
+        }
+        .clear-all-btn {
+            background-color: #c0392b; color: white; border: none;
+            padding: 7px 12px; 
+            border-radius: 5px; cursor: pointer;
+            font-size: 0.85em; 
+            transition: background-color 0.2s ease;
+            white-space: nowrap; height: 34px; 
+            font-weight: 700;
+            vertical-align: middle; 
+        }
+        .clear-all-btn:hover { background-color: #e74c3c; }
+
+        .io-area { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+            flex-grow: 1; /* Performance: Takes available space in .main-content */
+            min-height: 0; /* Performance: Allows shrinking */
+            margin-bottom: 0; 
+            position: relative;
+            overflow: hidden; /* Performance: Prevent this area from scrolling */
+        }
+        #inputText, .output-wrapper { 
+            flex: 1 1 auto; 
+            min-width: 0; /* Performance: Allow shrinking */
+            display: flex; 
+            flex-direction: column;
+            min-height: 0; /* Performance: Allow shrinking, was 100px */
+        }
+        .output-wrapper {
+            position: relative; 
+        }
+        textarea {
+            font-family: var(--font-monospace); 
+            width: 100%; 
+            flex-grow: 1; /* Performance: Textareas fill their wrapper */
+            padding: 10px; 
+            border: 1px solid var(--input-border); background-color: var(--main-content-bg);
+            color: var(--text-color); border-radius: 6px; 
+            font-size: var(--textarea-font-size); 
+            line-height: 1.5; resize: vertical; 
+            min-height: 50px; /* Performance: Reduced min-height, was 100px */
+            overflow-y: auto; /* Performance: Individual textareas scroll their content */
+            -webkit-overflow-scrolling: touch; 
+        }
+        textarea:focus { outline: none; border-color: var(--input-focus-border); }
+        textarea.input-not-used::placeholder {
+            font-style: italic;
+            opacity: 0.7;
+        }
+        #outputTextarea.stale {
+            opacity: 0.6; 
+        }
+        .refresh-indicator {
+            position: absolute;
+            top: 8px; 
+            left: 50%;
+            transform: translateX(-50%); 
+            padding: 7px 10px; 
+            background-color: var(--refresh-indicator-button-bg); 
+            color: var(--refresh-indicator-button-text);
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 5; 
+            font-size: 0.85em; 
+            font-weight: 700; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: none; 
+            white-space: nowrap;
+        }
+
+        footer { 
+            text-align: center; padding: 10px; 
+            background-color: var(--footer-bg);
+            color: var(--footer-text); font-size: 0.8em; 
+            border-top: 1px solid var(--sidebar-border); 
+            flex-shrink: 0; /* Performance: Footer should not shrink */
+            position: relative; 
+            z-index: 1000; 
+        }
+
+        .modal-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); 
+            display: none; 
+            align-items: flex-start; 
+            justify-content: center;
+            z-index: 2000; padding: 1rem; 
+            backdrop-filter: blur(4px); 
+            overflow-y: auto; 
+            -webkit-overflow-scrolling: touch;
+        }
+        .modal-content {
+            background-color: var(--modal-bg); 
+            color: var(--modal-text-color); 
+            padding: 15px; 
+            border-radius: 10px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4); 
+            width: 95%; 
+            max-width: 600px; 
+            position: relative; 
+            display: flex; flex-direction: column;
+            margin-top: 2vh; 
+        }
+        .modal-header {
+            display: flex; flex-direction: column; 
+            align-items: center; 
+            margin-bottom: 8px; 
+            padding-bottom: 0; 
+        }
+        .modal-header h2 { 
+            font-size: 1.4em; 
+            color: var(--modal-main-title-text-color); 
+            background-color: transparent; 
+            padding: 5px 10px; 
+            border-radius: 5px;
+            display: inline-block; 
+            margin-bottom: 10px; 
+            text-align: center;
+            font-weight: 700;
+        }
+        .modal-close-button {
+            background: none; border: none; color: var(--modal-text-color); 
+            font-size: 1.6rem; 
+            cursor: pointer; padding: 0.2rem; 
+            line-height: 1;
+            position: absolute; 
+            top: 10px; 
+            right: 10px; 
+        }
+        .modal-close-button:hover { color: var(--header-bg); }
+        
+        .modal-navigation { 
+            display: flex; justify-content: center; align-items: center;
+            flex-wrap: wrap; gap: 6px; 
+            margin-bottom: 10px; 
+            padding-bottom: 8px; 
+        }
+        .modal-nav-button {
+            background-color: var(--modal-nav-button-bg); color: var(--modal-nav-button-text);
+            border: 1px solid var(--modal-border-color); 
+            padding: 5px 10px; 
+            border-radius: 18px; 
+            font-size: 0.75em; 
+            font-weight: 500; cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            text-transform: capitalize;
+        }
+        .modal-nav-button:hover { background-color: var(--modal-nav-button-hover-bg); }
+        .modal-nav-button.active {
+            background-color: var(--modal-nav-button-active-bg);
+            color: var(--modal-nav-button-active-text);
+            border-color: var(--modal-nav-button-active-bg); 
+            font-weight: bold;
+        }
+        
+        .modal-body { 
+            overflow-y: auto; 
+            flex-grow: 1; 
+            padding-right: 5px; 
+            max-height: 65vh; 
+            -webkit-overflow-scrolling: touch;
+        }
+        .modal-slide {
+            display: none; 
+            padding: 5px 0; 
+            color: var(--modal-text-color) !important;
+        }
+        .modal-slide.active { display: block !important; }
+        .modal-slide h3 { 
+            font-size: 1.15em; 
+            color: var(--modal-slide-title-color-distinct) !important; 
+            margin-bottom: 15px; 
+            text-align: center; 
+            font-weight: 700; 
+        }
+        .modal-slide ul {
+            list-style: none !important; padding-left: 0 !important; margin:0;
+        }
+        .modal-slide ul li {
+            margin-bottom: 0.7rem !important; 
+            font-size: 0.85em !important; 
+            line-height: 1.5 !important; 
+            color: var(--modal-text-color) !important;
+            display: flex !important; align-items: flex-start !important;
+        }
+        .modal-slide ul li i { 
+            display: inline-block !important;
+            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif !important;
+            font-style: normal !important; font-variant: normal !important;
+            text-rendering: auto !important; -webkit-font-smoothing: antialiased;
+            font-weight: 900 !important; margin-right: 8px !important; 
+            color: var(--modal-slide-icon-color) !important; font-size: 0.9em !important; 
+            line-height: inherit !important; padding-top: 0.1em; 
+            width: 18px !important; text-align: center !important; flex-shrink: 0;
+            visibility: visible !important; opacity: 1 !important;
+        }
+        .modal-slide ul li i.fa-brands { font-weight: 400 !important; }
+        .modal-slide ul li span {
+            flex-grow: 1; display: inline-block !important;
+            color: var(--modal-text-color) !important;
+            visibility: visible !important; opacity: 1 !important;
+        }
+        .modal-slide ul li strong {
+            color: var(--modal-slide-strong-color) !important;
+            font-weight: 700 !important; 
+        }
+        .modal-slide .slide-footer {
+            text-align: center; margin-top: 1rem; 
+            padding-top: 0.7rem; 
+        }
+        .modal-slide .slide-footer p { color: var(--text-color); font-size: 0.85em; opacity: 0.8; } 
+        .modal-slide .slide-footer a { color: var(--modal-footer-link-color); text-decoration: underline; } 
+        .modal-slide .slide-footer a:hover { opacity:0.8; }
+
+        /* Responsive Adjustments */
+        /* Default (mobile-first) styles for .container already set flex-direction: column from previous step */
+        /* The .container itself is overflow:hidden. If sidebar + main-content is too tall for viewport, content might be cut. */
+        /* This adheres to "only tools list scrolls" but might be very compact on short mobile screens. */
+
+        @media (min-width: 600px) { 
+            .sidebar-header {
+                flex-direction: row; 
+                justify-content: space-between;
+                align-items: center;
+            }
+            .tools-sidebar h2 {
+                margin-bottom: 0; 
+            }
+            #find-tool-input {
+                flex-grow: 1;
+                min-width: 80px;
+                max-width: 150px; 
+                width: auto; 
+            }
+        }
+
+        @media (min-width: 769px) { /* Desktop layout */
+            .container {
+                flex-direction: row; /* Switch to row layout */
+                /* margin: 15px;  gap: 15px; /* Already set */
+            }
+            .tools-sidebar {
+                width: 260px; 
+                padding: 20px;
+                height: 100%; /* Ensure sidebar takes full height of the container row */
+            }
+             .tools-sidebar h2 { 
+                font-size: 1.2em; 
+            }
+            .tools-sidebar li button {
+                 font-size: 0.82em; 
+            }
+            .main-content {
+                padding: 20px;
+                height: 100%; /* Ensure main-content takes full height of the container row */
+            }
+            .controls {
+                margin-bottom: 15px;
+                padding: 10px 0;
+                min-height: 56px;
+                gap: 10px;
+            }
+            .tool-specific-controls-container {
+                gap: 10px;
+            }
+            .control-group {
+                gap: 8px;
+                flex-wrap: nowrap; 
+            }
+             .control-group label { 
+                font-size: 0.9em;
+                margin-bottom: 0;
+            }
+            .control-group input[type="text"], 
+            .control-group input[type="number"],
+            .control-group select {
+                padding: 8px 10px;
+                font-size: 0.9em;
+                height: 36px;
+                flex-grow: 0; 
+            }
+            .control-group input[type="text"] { min-width: 110px; }
+            .control-group input[type="number"] { width: 60px; }
+            .control-group button {
+                padding: 8px 12px;
+                font-size: 0.9em;
+                height: 36px;
+            }
+            .clear-all-btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+                height: 36px;
+            }
+
+            .io-area {
+                flex-direction: row; /* Side-by-side textareas on desktop */
+                gap: 15px;
+                /* min-height: 0; /* Already set and important */
+            }
+             #inputText, .output-wrapper { 
+                flex: 1 1 0%; 
+                /* min-height: 0; /* Already set */
+            }
+            textarea {
+                padding: 12px;
+                /* min-height: 50px; /* Already set */
+            }
+            .refresh-indicator {
+                top: 10px;
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+            header h1 {
+                font-size: 1.5em;
+            }
+            .header-actions {
+                gap: 15px;
+            }
+            .dropdown-menu {
+                min-width: 200px;
+            }
+            .dropdown-menu a, .dropdown-menu .dropdown-item-button-link {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            footer {
+                padding: 12px;
+                font-size: 0.85em;
+            }
+            .modal-content {
+                padding: 20px;
+                width: 90%;
+                max-width: 650px;
+                margin-top: 5vh;
+            }
+            .modal-header h2 {
+                font-size: 1.6em;
+                padding: 5px 15px;
+                margin-bottom: 15px;
+            }
+            .modal-close-button {
+                font-size: 1.8rem;
+                padding: 0.3rem;
+                top: 15px;
+                right: 15px;
+            }
+            .modal-navigation {
+                gap: 8px;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+            .modal-nav-button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+                border-radius: 20px;
+            }
+             .modal-body {
+                max-height: 60vh;
+            }
+            .modal-slide h3 {
+                font-size: 1.25em;
+                margin-bottom: 20px;
+            }
+            .modal-slide ul li {
+                margin-bottom: 0.8rem !important;
+                font-size: 0.9em !important;
+                line-height: 1.6 !important;
+            }
+            .modal-slide ul li i {
+                margin-right: 10px !important;
+                font-size: 1em !important;
+                padding-top: 0.15em;
+                width: 20px !important;
+            }
+            .modal-slide .slide-footer {
+                margin-top: 1.2rem;
+                padding-top: 0.8rem;
+            }
+             .modal-slide .slide-footer p {
+                font-size: 0.9em;
+            }
+        }
+        .visually-hidden { /* For accessible headings */
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "@ChrisPirillo's Textulator",
+      "url": "https://pirillo.com/arcade/textulator.html", 
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://pirillo.com/arcade/textulator.html?q={search_term_string}", 
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "LockerGnome", 
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.example.com/chrispirillo-logo.png" 
+        }
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "@ChrisPirillo's Textulator - Online Text Manipulation Tools",
+      "description": "Quickly process and transform text with a wide array of tools. From case conversion to encoding, Textulator has you covered.",
+      "url": "https://pirillo.com/arcade/textulator.html", 
+      "mainEntity": {
+        "@type": "SoftwareApplication",
+        "name": "@ChrisPirillo's Textulator",
+        "applicationCategory": "TextProcessing",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0"
+        }
+      }
+    }
+    </script>
+
+</head>
+<body class="dark-mode"> 
+    <header role="banner"> <h1> <span class="header-title-content">
+                <span class="header-title-at">@</span>
+                <div class="dropdown" id="chrisPirilloDropdownContainer">
+                    <button class="dropdown-toggle" id="headerDropdownToggle" aria-expanded="false" aria-controls="chrisPirilloDropdown" aria-haspopup="true">ChrisPirillo</button>
+                    <nav aria-label="Chris Pirillo Links"> <div id="chrisPirilloDropdown" class="dropdown-menu">
+                            </div>
+                    </nav>
+                </div>'s Textulator
+            </span>
+        </h1>
+        <div class="header-actions">
+            </div>
+    </header>
+
+    <div class="container">
+        <aside class="tools-sidebar" role="complementary"> <div class="sidebar-header">
+                <h2>Tools</h2> <input type="text" id="find-tool-input" placeholder="Find tool..." onkeyup="filterTools()" aria-label="Find tool in list">
+            </div>
+            <div class="tools-list-container">
+                <ul id="tools-ul" role="listbox" aria-label="Available text manipulation tools">
+                    <li><button role="option" data-toolname="addLineNumbers" onclick="selectTool(this, 'addLineNumbers')">Add Line Numbers</button></li>
+                    <li><button role="option" data-toolname="addPrefix" onclick="selectTool(this, 'addPrefix', 'prefix-suffix-controls')">Add Prefix to Lines</button></li>
+                    <li><button role="option" data-toolname="addQuotesToLines" onclick="selectTool(this, 'addQuotesToLines', 'quote-controls')">Add Quotes to Lines</button></li>
+                    <li><button role="option" data-toolname="addSuffix" onclick="selectTool(this, 'addSuffix', 'prefix-suffix-controls')">Add Suffix to Lines</button></li>
+                    <li><button role="option" data-toolname="avgWordLength" onclick="selectTool(this, 'avgWordLength')">Average Word Length</button></li>
+                    <li><button role="option" data-toolname="base64Decode" onclick="selectTool(this, 'base64Decode')">Base64 Decode</button></li>
+                    <li><button role="option" data-toolname="base64Encode" onclick="selectTool(this, 'base64Encode')">Base64 Encode</button></li>
+                    <li><button role="option" data-toolname="binaryToText" onclick="selectTool(this, 'binaryToText')">Binary to Text</button></li>
+                    <li><button role="option" data-toolname="charCountNoSpaces" onclick="selectTool(this, 'charCountNoSpaces')">Character Count (no spaces)</button></li>
+                    <li><button role="option" data-toolname="charCountWithSpaces" onclick="selectTool(this, 'charCountWithSpaces')">Character Count (w/ spaces)</button></li>
+                    <li><button role="option" data-toolname="characterCode" onclick="selectTool(this, 'characterCode', 'char-code-controls')">Character Code (ASCII/Unicode)</button></li>
+                    <li><button role="option" data-toolname="charFrequency" onclick="selectTool(this, 'charFrequency')">Character Frequency</button></li>
+                    <li><button role="option" data-toolname="commaToNewline" onclick="selectTool(this, 'commaToNewline')">Comma to Newline</button></li>
+                    <li><button role="option" data-toolname="convertLineEndings" onclick="selectTool(this, 'convertLineEndings', 'line-ending-controls')">Convert Line Endings</button></li>
+                    <li><button role="option" data-toolname="natoToText" onclick="selectTool(this, 'natoToText')">Convert NATO Phonetic to Text</button></li>
+                    <li><button role="option" data-toolname="textToBinary" onclick="selectTool(this, 'textToBinary')">Convert Text to Binary</button></li>
+                    <li><button role="option" data-toolname="textToClappingEmojis" onclick="selectTool(this, 'textToClappingEmojis')">Convert Text to Clapping Emojis</button></li>
+                    <li><button role="option" data-toolname="textToHex" onclick="selectTool(this, 'textToHex')">Convert Text to Hex</button></li>
+                    <li><button role="option" data-toolname="textToLeetSpeak" onclick="selectTool(this, 'textToLeetSpeak')">Convert Text to Leetspeak (1337)</button></li>
+                    <li><button role="option" data-toolname="textToNato" onclick="selectTool(this, 'textToNato')">Convert Text to NATO Phonetic</button></li>
+                    <li><button role="option" data-toolname="textToOldEnglish" onclick="selectTool(this, 'textToOldEnglish')">Convert Text to Old English (Simple)</button></li>
+                    <li><button role="option" data-toolname="textToPirateSpeak" onclick="selectTool(this, 'textToPirateSpeak')">Convert Text to Pirate Speak</button></li>
+                    <li><button role="option" data-toolname="textToSpacedOut" onclick="selectTool(this, 'textToSpacedOut')">Convert Text to Spaced Out</button></li>
+                    <li><button role="option" data-toolname="toSpongeBobCase" onclick="selectTool(this, 'toSpongeBobCase')">Convert Text to SpOnGeBoB Case</button></li>
+                    <li><button role="option" data-toolname="textToStrikethrough" onclick="selectTool(this, 'textToStrikethrough')">Convert Text to Strikethrough</button></li>
+                    <li><button role="option" data-toolname="textToVaporwave" onclick="selectTool(this, 'textToVaporwave')">Convert Text to Vaporwave</button></li>
+                    <li><button role="option" data-toolname="textToYodaSpeak" onclick="selectTool(this, 'textToYodaSpeak')">Convert Text to Yoda Speak</button></li>
+                    <li><button role="option" data-toolname="toCamelCase" onclick="selectTool(this, 'toCamelCase')">Convert to Camel Case</button></li>
+                    <li><button role="option" data-toolname="toKebabCase" onclick="selectTool(this, 'toKebabCase')">Convert to Kebab Case</button></li>
+                    <li><button role="option" data-toolname="toLowerCase" onclick="selectTool(this, 'toLowerCase')">Convert to Lowercase</button></li>
+                    <li><button role="option" data-toolname="toPascalCase" onclick="selectTool(this, 'toPascalCase')">Convert to Pascal Case</button></li>
+                    <li><button role="option" data-toolname="toSarcasticCase" onclick="selectTool(this, 'toSarcasticCase')">Convert to Sarcastic Case</button></li>
+                    <li><button role="option" data-toolname="toSentenceCase" onclick="selectTool(this, 'toSentenceCase')">Convert to Sentence Case</button></li>
+                    <li><button role="option" data-toolname="toSnakeCase" onclick="selectTool(this, 'toSnakeCase')">Convert to Snake Case</button></li>
+                    <li><button role="option" data-toolname="toTitleCase" onclick="selectTool(this, 'toTitleCase')">Convert to Title Case</button></li>
+                    <li><button role="option" data-toolname="toUpperCase" onclick="selectTool(this, 'toUpperCase')">Convert to Uppercase</button></li>
+                    <li><button role="option" data-toolname="countCharOccurrences" onclick="selectTool(this, 'countCharOccurrences', 'char-count-controls')">Count Character Occurrences</button></li>
+                    <li><button role="option" data-toolname="countConsonants" onclick="selectTool(this, 'countConsonants')">Count Consonants</button></li>
+                    <li><button role="option" data-toolname="countCsvItems" onclick="selectTool(this, 'countCsvItems')">Count Comma Separated Items</button></li>
+                    <li><button role="option" data-toolname="countParagraphs" onclick="selectTool(this, 'countParagraphs')">Count Paragraphs</button></li>
+                    <li><button role="option" data-toolname="countSentences" onclick="selectTool(this, 'countSentences')">Count Sentences</button></li>
+                    <li><button role="option" data-toolname="countUniqueWords" onclick="selectTool(this, 'countUniqueWords')">Count Unique Words</button></li>
+                    <li><button role="option" data-toolname="countVowels" onclick="selectTool(this, 'countVowels')">Count Vowels</button></li>
+                    <li><button role="option" data-toolname="countWordOccurrences" onclick="selectTool(this, 'countWordOccurrences', 'word-count-controls')">Count Word Occurrences</button></li>
+                    <li><button role="option" data-toolname="csvToList" onclick="selectTool(this, 'csvToList', 'list-options-controls')">CSV/Newline to HTML List</button></li>
+                    <li><button role="option" data-toolname="extractBetweenDelimiters" onclick="selectTool(this, 'extractBetweenDelimiters', 'between-delimiters-controls')">Extract Between Delimiters</button></li>
+                    <li><button role="option" data-toolname="extractEmails" onclick="selectTool(this, 'extractEmails')">Extract Email Addresses</button></li>
+                    <li><button role="option" data-toolname="extractHashtags" onclick="selectTool(this, 'extractHashtags')">Extract Hashtags</button></li>
+                    <li><button role="option" data-toolname="extractIPs" onclick="selectTool(this, 'extractIPs')">Extract IP Addresses</button></li>
+                    <li><button role="option" data-toolname="extractMentions" onclick="selectTool(this, 'extractMentions')">Extract Mentions (@)</button></li>
+                    <li><button role="option" data-toolname="extractNumbers" onclick="selectTool(this, 'extractNumbers')">Extract Numbers</button></li>
+                    <li><button role="option" data-toolname="extractURLs" onclick="selectTool(this, 'extractURLs')">Extract URLs</button></li>
+                    <li><button role="option" data-toolname="findAndReplace" onclick="selectTool(this, 'findAndReplace', 'find-replace-controls')">Find and Replace</button></li>
+                    <li><button role="option" data-toolname="findLinesContaining" onclick="selectTool(this, 'findLinesContaining', 'lines-containing-controls')">Find Lines Containing</button></li>
+                    <li><button role="option" data-toolname="findLongestLine" onclick="selectTool(this, 'findLongestLine')">Find Longest Line</button></li>
+                    <li><button role="option" data-toolname="generateLoremIpsum" onclick="selectTool(this, 'generateLoremIpsum', 'lorem-ipsum-controls')">Generate Paragraphs</button></li>
+                    <li><button role="option" data-toolname="generateUuid" onclick="selectTool(this, 'generateUuid')">Generate UUID</button></li>
+                    <li><button role="option" data-toolname="hexToText" onclick="selectTool(this, 'hexToText')">Hex to Text</button></li>
+                    <li><button role="option" data-toolname="htmlDecode" onclick="selectTool(this, 'htmlDecode')">HTML Decode</button></li>
+                    <li><button role="option" data-toolname="htmlEncode" onclick="selectTool(this, 'htmlEncode')">HTML Encode</button></li>
+                    <li><button role="option" data-toolname="joinByDelimiter" onclick="selectTool(this, 'joinByDelimiter', 'delimiter-controls')">Join Lines with Delimiter</button></li>
+                    <li><button role="option" data-toolname="keepOnlyAlpha" onclick="selectTool(this, 'keepOnlyAlpha')">Keep Only Alpha Characters</button></li>
+                    <li><button role="option" data-toolname="keepOnlyAlphanumeric" onclick="selectTool(this, 'keepOnlyAlphanumeric')">Keep Only Alphanumeric</button></li>
+                    <li><button role="option" data-toolname="keepOnlyNumeric" onclick="selectTool(this, 'keepOnlyNumeric')">Keep Only Numeric Characters</button></li>
+                    <li><button role="option" data-toolname="lineCount" onclick="selectTool(this, 'lineCount')">Line Count</button></li>
+                    <li><button role="option" data-toolname="markdownToHtml" onclick="selectTool(this, 'markdownToHtml')">Markdown to HTML (Basic)</button></li>
+                    <li><button role="option" data-toolname="markdownToPlainText" onclick="selectTool(this, 'markdownToPlainText')">Markdown to Plain Text</button></li>
+                    <li><button role="option" data-toolname="mirrorText" onclick="selectTool(this, 'mirrorText')">Mirror Text (Chars)</button></li>
+                    <li><button role="option" data-toolname="morseDecode" onclick="selectTool(this, 'morseDecode')">Morse Code Decode</button></li>
+                    <li><button role="option" data-toolname="morseEncode" onclick="selectTool(this, 'morseEncode')">Morse Code Encode</button></li>
+                    <li><button role="option" data-toolname="newlineToComma" onclick="selectTool(this, 'newlineToComma')">Newline to Comma</button></li>
+                    <li><button role="option" data-toolname="numToRoman" onclick="selectTool(this, 'numToRoman', 'roman-numeral-controls')">Number to Roman Numeral</button></li>
+                    <li><button role="option" data-toolname="randomizeWordOrderInLines" onclick="selectTool(this, 'randomizeWordOrderInLines')">Randomize Word Order (Lines)</button></li>
+                    <li><button role="option" data-toolname="removeAccents" onclick="selectTool(this, 'removeAccents')">Remove Accents/Diacritics</button></li>
+                    <li><button role="option" data-toolname="removeBlankLines" onclick="selectTool(this, 'removeBlankLines')">Remove Blank Lines</button></li>
+                    <li><button role="option" data-toolname="removeDuplicateCsvItems" onclick="selectTool(this, 'removeDuplicateCsvItems')">Remove Dupes in CSV List</button></li>
+                    <li><button role="option" data-toolname="removeDuplicateLines" onclick="selectTool(this, 'removeDuplicateLines')">Remove Duplicate Lines</button></li>
+                    <li><button role="option" data-toolname="removeExtraSpaces" onclick="selectTool(this, 'removeExtraSpaces')">Remove Extra Spaces</button></li>
+                    <li><button role="option" data-toolname="removeLineBreaks" onclick="selectTool(this, 'removeLineBreaks')">Remove Line Breaks</button></li>
+                    <li><button role="option" data-toolname="removeLinesContaining" onclick="selectTool(this, 'removeLinesContaining', 'lines-containing-controls')">Remove Lines Containing</button></li>
+                    <li><button role="option" data-toolname="removePunctuation" onclick="selectTool(this, 'removePunctuation')">Remove Punctuation</button></li>
+                    <li><button role="option" data-toolname="removeQuotesFromLines" onclick="selectTool(this, 'removeQuotesFromLines', 'quote-controls')">Remove Quotes from Lines</button></li>
+                    <li><button role="option" data-toolname="removeAllSpaces" onclick="selectTool(this, 'removeAllSpaces')">Remove All Spaces</button></li>
+                    <li><button role="option" data-toolname="repeatText" onclick="selectTool(this, 'repeatText', 'repeat-text-controls')">Repeat Text N Times</button></li>
+                    <li><button role="option" data-toolname="reverseEachLine" onclick="selectTool(this, 'reverseEachLine')">Reverse Each Line</button></li>
+                    <li><button role="option" data-toolname="reverseText" onclick="selectTool(this, 'reverseText')">Reverse Text</button></li>
+                    <li><button role="option" data-toolname="reverseWordsInLines" onclick="selectTool(this, 'reverseWordsInLines')">Reverse Words in Lines</button></li>
+                    <li><button role="option" data-toolname="romanToNum" onclick="selectTool(this, 'romanToNum', 'roman-numeral-controls')">Roman Numeral to Number</button></li>
+                    <li><button role="option" data-toolname="rot13Cipher" onclick="selectTool(this, 'rot13Cipher')">ROT13 Cipher</button></li>
+                    <li><button role="option" data-toolname="scrambleLettersInWords" onclick="selectTool(this, 'scrambleLettersInWords')">Scramble Letters in Words</button></li>
+                    <li><button role="option" data-toolname="shuffleLines" onclick="selectTool(this, 'shuffleLines')">Shuffle Lines</button></li>
+                    <li><button role="option" data-toolname="slugify" onclick="selectTool(this, 'slugify')">Slugify Text</button></li>
+                    <li><button role="option" data-toolname="sortCommaSeparated" onclick="selectTool(this, 'sortCommaSeparated')">Sort Comma Separated List</button></li>
+                    <li><button role="option" data-toolname="sortLinesAZ" onclick="selectTool(this, 'sortLinesAZ')">Sort Lines (A-Z)</button></li>
+                    <li><button role="option" data-toolname="sortLinesZA" onclick="selectTool(this, 'sortLinesZA')">Sort Lines (Z-A)</button></li>
+                    <li><button role="option" data-toolname="spacesToTabs" onclick="selectTool(this, 'spacesToTabs', 'tab-space-controls')">Spaces to Tabs</button></li>
+                    <li><button role="option" data-toolname="splitByDelimiter" onclick="selectTool(this, 'splitByDelimiter', 'delimiter-controls')">Split Text by Delimiter</button></li>
+                    <li><button role="option" data-toolname="stripHtmlTags" onclick="selectTool(this, 'stripHtmlTags')">Strip HTML Tags</button></li>
+                    <li><button role="option" data-toolname="swapCase" onclick="selectTool(this, 'swapCase')">Swap Case</button></li>
+                    <li><button role="option" data-toolname="tabsToSpaces" onclick="selectTool(this, 'tabsToSpaces', 'tab-space-controls')">Tabs to Spaces</button></li>
+                    <li><button role="option" data-toolname="trimEachLine" onclick="selectTool(this, 'trimEachLine')">Trim Each Line</button></li>
+                    <li><button role="option" data-toolname="upsideDownText" onclick="selectTool(this, 'upsideDownText')">Upside Down Text</button></li>
+                    <li><button role="option" data-toolname="urlDecode" onclick="selectTool(this, 'urlDecode')">URL Decode</button></li>
+                    <li><button role="option" data-toolname="urlEncode" onclick="selectTool(this, 'urlEncode')">URL Encode</button></li>
+                    <li><button role="option" data-toolname="wordCount" onclick="selectTool(this, 'wordCount')">Word Count</button></li>
+                    <li><button role="option" data-toolname="wordFrequency" onclick="selectTool(this, 'wordFrequency')">Word Frequency</button></li>
+                    <li><button role="option" data-toolname="wordWrap" onclick="selectTool(this, 'wordWrap', 'word-wrap-controls')">Word Wrap</button></li>
+                    <li><button role="option" data-toolname="zalgoText" onclick="selectTool(this, 'zalgoText', 'zalgo-controls')">Zalgo Text Generator</button></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content" role="main"> <section class="controls" aria-labelledby="tool-controls-heading"> <h2 id="tool-controls-heading" class="visually-hidden">Tool Specific Controls</h2> <div class="tool-specific-controls-container">
+                    <div id="find-replace-controls" class="control-group">
+                        <label for="find-text">Find:</label>
+                        <input type="text" id="find-text" placeholder="Find text" aria-label="Text to find">
+                        <label for="replace-text">Replace:</label>
+                        <input type="text" id="replace-text" placeholder="Replace with" aria-label="Replacement text">
+                        <button onclick="applyToolAction('findAndReplaceAction')">Replace</button>
+                    </div>
+                    <div id="prefix-suffix-controls" class="control-group">
+                        <label for="prefix-suffix-text">Text:</label>
+                        <input type="text" id="prefix-suffix-text" placeholder="Prefix/Suffix text" aria-label="Prefix or Suffix text">
+                        <button id="apply-prefix-suffix-button" onclick="applyPrefixSuffix()">Apply</button>
+                    </div>
+                    <div id="lorem-ipsum-controls" class="control-group">
+                        <label for="lorem-paragraphs">Paragraphs:</label>
+                        <input type="number" id="lorem-paragraphs" value="3" min="1" placeholder="Paragraphs" aria-label="Number of paragraphs">
+                        <button onclick="applyToolAction('generateLoremIpsumAction')">Generate</button>
+                    </div>
+                    <div id="char-count-controls" class="control-group">
+                        <label for="char-to-count">Character:</label>
+                        <input type="text" id="char-to-count" maxlength="1" placeholder="Char" aria-label="Character to count">
+                        <button onclick="applyToolAction('countCharOccurrencesAction')">Count</button>
+                    </div>
+                    <div id="word-count-controls" class="control-group">
+                        <label for="word-to-count">Word:</label>
+                        <input type="text" id="word-to-count" placeholder="Word" aria-label="Word to count">
+                        <label><input type="checkbox" id="word-count-case-sensitive"> Case Sensitive</label>
+                        <button onclick="applyToolAction('countWordOccurrencesAction')">Count</button>
+                    </div>
+                    <div id="lines-containing-controls" class="control-group">
+                        <label for="string-to-find-lines">Text in Line:</label>
+                        <input type="text" id="string-to-find-lines" placeholder="Text in line" aria-label="Text to find or remove in lines">
+                        <button id="apply-lines-containing-button" onclick="applyLinesContaining()">Apply</button>
+                    </div>
+                    <div id="delimiter-controls" class="control-group">
+                        <label for="delimiter-text">Delimiter:</label>
+                        <input type="text" id="delimiter-text" placeholder="Delimiter" aria-label="Delimiter">
+                        <button id="apply-delimiter-button" onclick="applyDelimiterTool()">Apply</button>
+                    </div>
+                    <div id="list-options-controls" class="control-group">
+                        <label for="list-type-select">List Type:</label>
+                        <select id="list-type-select" aria-label="HTML List type">
+                            <option value="ul">Unordered List (ul)</option>
+                            <option value="ol">Ordered List (ol)</option>
+                        </select>
+                        <label for="list-input-delimiter-select">Input Delimiter:</label>
+                        <select id="list-input-delimiter-select" aria-label="Input delimiter for list">
+                            <option value=",">Comma separated</option>
+                            <option value="\n">Newline separated</option>
+                        </select>
+                        <button onclick="applyToolAction('csvToListAction')">Create List</button>
+                    </div>
+                     <div id="roman-numeral-controls" class="control-group">
+                        <label for="roman-numeral-input">Input:</label>
+                        <input type="text" id="roman-numeral-input" placeholder="Number or Roman" aria-label="Number or Roman numeral">
+                        <button onclick="applyRomanNumeralTool()">Convert</button>
+                    </div>
+                    <div id="between-delimiters-controls" class="control-group">
+                        <label for="delimiter-start">Start:</label>
+                        <input type="text" id="delimiter-start" placeholder="Start delimiter" aria-label="Start delimiter">
+                        <label for="delimiter-end">End:</label>
+                        <input type="text" id="delimiter-end" placeholder="End delimiter" aria-label="End delimiter">
+                        <button onclick="applyToolAction('extractBetweenDelimitersAction')">Extract</button>
+                    </div>
+                    <div id="tab-space-controls" class="control-group">
+                        <label for="tab-space-count">Spaces:</label>
+                        <input type="number" id="tab-space-count" value="4" min="1" placeholder="Spaces" aria-label="Number of spaces for a tab">
+                        <button onclick="applyTabSpaceTool()">Convert</button>
+                    </div>
+                    <div id="line-ending-controls" class="control-group">
+                        <label for="line-ending-select">Target Ending:</label>
+                        <select id="line-ending-select" aria-label="Target line ending">
+                            <option value="LF">Unix (LF)</option>
+                            <option value="CRLF">Windows (CRLF)</option>
+                            <option value="CR">Mac Classic (CR)</option>
+                        </select>
+                        <button onclick="applyToolAction('convertLineEndingsAction')">Convert Endings</button>
+                    </div>
+                    <div id="word-wrap-controls" class="control-group">
+                        <label for="wrap-length">Wrap At:</label>
+                        <input type="number" id="wrap-length" value="80" min="10" placeholder="Wrap at column" aria-label="Wrap at column">
+                        <button onclick="applyToolAction('wordWrapAction')">Wrap</button>
+                    </div>
+                    <div id="zalgo-controls" class="control-group">
+                        <label for="zalgo-intensity">Intensity:</label>
+                        <select id="zalgo-intensity" aria-label="Zalgo intensity">
+                            <option value="mini">Mini</option>
+                            <option value="normal" selected>Normal</option>
+                            <option value="maxi">Maxi</option>
+                        </select>
+                        <button onclick="applyToolAction('zalgoTextAction')">Zalgofy</button>
+                    </div>
+                    <div id="quote-controls" class="control-group">
+                        <label for="quote-type-select">Quote Type:</label>
+                        <select id="quote-type-select" aria-label="Quote type">
+                            <option value='"'>Double Quotes ("")</option>
+                            <option value="'">Single Quotes ('')</option>
+                            <option value="`">Backticks (``)</option>
+                        </select>
+                        <button id="apply-quote-button" onclick="applyQuoteTool()">Apply</button>
+                    </div>
+                    <div id="repeat-text-controls" class="control-group">
+                        <label for="repeat-count">Times:</label>
+                        <input type="number" id="repeat-count" value="3" min="1" placeholder="Times" aria-label="Number of times to repeat">
+                        <label for="repeat-separator">Separator:</label>
+                        <input type="text" id="repeat-separator" placeholder="Separator (optional)" aria-label="Separator for repeated text">
+                        <button onclick="applyToolAction('repeatTextAction')">Repeat</button>
+                    </div>
+                     <div id="char-code-controls" class="control-group">
+                        <label for="char-for-code">Character:</label>
+                        <input type="text" id="char-for-code" maxlength="1" placeholder="Char" aria-label="Character for code">
+                        <button onclick="applyToolAction('characterCodeAction')">Get Code</button>
+                    </div>
+                </div>
+                <div class="clear-all-btn-container">
+                    <button class="clear-all-btn" onclick="clearAll()">Clear</button>
+                </div>
+            </section>
+
+            <section class="io-area" aria-labelledby="io-heading"> <h2 id="io-heading" class="visually-hidden">Input and Output Text Areas</h2> <textarea id="inputText" placeholder="Enter your text here..." aria-label="Input text area"></textarea>
+                <div class="output-wrapper">
+                    <textarea id="outputTextarea" placeholder="Result will appear here..." readonly aria-label="Output text area"></textarea>
+                    <div id="refreshOutputIndicator" class="refresh-indicator" role="button" tabindex="0" aria-label="Refresh output">
+                        Click to Refresh
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="hireChrisModal" role="dialog" aria-modal="true" aria-labelledby="hireChrisModalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="hireChrisModalTitle">Work with Chris Pirillo!</h2> <button class="modal-close-button" onclick="closeHireChrisModal()" aria-label="Close modal">×</button>
+            </div>
+             <nav class="modal-navigation" id="hireChrisModalNavigation" aria-label="Hire Chris Modal Navigation">
+                </nav>
+            <div class="modal-body" id="hireChrisModalBody">
+                </div>
+        </div>
+    </div>
+
+    <footer role="contentinfo"> <p>&copy; 2025 @ChrisPirillo's Textulator - Built for quick text manipulations.</p>
+    </footer>
+    
+    <script defer>
+        // --- Global State & Utility ---
+        let currentToolName = null; 
+        let currentActiveButton = null;
+        
+        const hireChrisModalElement = document.getElementById('hireChrisModal');
+        const hireChrisModalBody = document.getElementById('hireChrisModalBody');
+        const hireChrisModalNavigation = document.getElementById('hireChrisModalNavigation');
+        
+        const headerDropdownToggle = document.getElementById('headerDropdownToggle');
+        const headerDropdownMenu = document.getElementById('chrisPirilloDropdown');
+
+        let currentHireChrisSlide = 0;
+        let lastAppliedToolDetails = { name: null, controlValues: {} };
+        let isOutputStale = false;
+        
+        const hireChrisModalSlidesData = [
+            { id: "Content", title: "Content & Brand Strategy", items: [ { text: "<strong>Content Creation Power-Up:</strong> Comprehensive strategy and production for video, podcasts, newsletters, and social media to maximize reach and engagement.", icon: "fas fa-video" }, { text: "<strong>Personal Brand Blueprint:</strong> Crafting and amplifying your unique voice and online presence to build authority and influence.", icon: "fas fa-signature" }, { text: "<strong>Digital Storytelling & Narrative Design:</strong> Helping businesses and creators tell compelling stories that connect with their audience.", icon: "fas fa-book-reader" }, { text: "<strong>Organic Marketing & Audience Growth:</strong> Strategies for sustainable audience building without relying solely on paid ads.", icon: "fas fa-users-cog" }, { text: "<strong>Livestreaming & Virtual Event Mastery:</strong> From tech setup to content strategy and audience engagement for impactful live experiences.", icon: "fas fa-broadcast-tower" } ] },
+            { id: "Community", title: "Community & Engagement", items: [ { text: "<strong>Community Building & Cultivation:</strong> Designing and implementing strategies to build, grow, and nurture thriving online communities (Discord, Patreon, forums, etc.).", icon: "fas fa-users" }, { text: "<strong>Audience Engagement & Retention Strategies:</strong> Techniques to keep your audience active, loyal, and excited about your work.", icon: "fas fa-heart" }, { text: "<strong>Fan Monetization & Value Exchange:</strong> Developing models for sustainable income from your community while providing genuine value.", icon: "fas fa-hand-holding-usd" } ] },
+            { id: "Consulting", title: "Tech & Innovation Consulting", items: [ { text: "<strong>AI Integration for Creators & Businesses:</strong> Practical guidance on leveraging AI tools to enhance productivity, creativity, and business processes.", icon: "fas fa-robot" }, { text: "<strong>Tech Stack & Workflow Optimization:</strong> Advising on the best tools and systems to streamline operations for solopreneurs and small teams.", icon: "fas fa-cogs" }, { text: "<strong>Emerging Technologies & Future Trends Analysis:</strong> Workshops and consulting on navigating the next wave of tech (Web3, metaverse, etc.) and its impact on creators/businesses.", icon: "fas fa-chart-line" }, { text: "<strong>Digital Transformation for Small Businesses:</strong> Helping traditional businesses adapt and thrive in the digital landscape.", icon: "fas fa-store-alt" } ] },
+            { id: "Product", title: "Product & Business Development", items: [ { text: "<strong>Digital Product Creation (Playbooks & Courses):</strong> Guidance on conceptualizing, creating, and launching valuable digital products.", icon: "fas fa-lightbulb" }, { text: "<strong>Creator Economy Monetization Strategies:</strong> Exploring diverse revenue streams beyond traditional ads (memberships, digital goods, sponsorships, etc.).", icon: "fas fa-dollar-sign" }, { text: "<strong>Entrepreneurial Coaching & \"Playshop\" Mentorship:</strong> Personalized guidance and accountability for entrepreneurs and creators looking to level up.", icon: "fas fa-chalkboard-teacher" }, { text: "<strong>Innovation & \"What's Next\" Workshops:</strong> Facilitating brainstorming and strategic planning sessions for businesses looking to innovate.", icon: "fas fa-brain" } ] },
+            { id: "Approach", title: "My Approach: The Common Thread", items: [ { text: "<strong>Authenticity & Relatability:</strong> I help you connect genuinely with your audience.", icon: "fas fa-check-circle" }, { text: "<strong>Future-Forward Thinking:</strong> Together, we'll stay ahead of the curve, embracing what's next.", icon: "fas fa-check-circle" }, { text: "<strong>Practical & Actionable Advice:</strong> You'll get real-world strategies, not just theory.", icon: "fas fa-check-circle" }, { text: "<strong>Community-Centric Focus:</strong> We'll build and nurture the power of your connections.", icon: "fas fa-check-circle" } ], footer: "<div class='slide-footer'><p>Ready to collaborate? Let's make something amazing! <a href='mailto:chris@pirillo.com?subject=Hiring Inquiry via Textulator'>chris@pirillo.com</a></p></div>" }
+        ];
+
+        const pirilloDropdownItems = [
+            { text: "Meet Chris", href: "/" },
+            { text: "Message Chris", href: "mailto:chris@pirillo.com" },
+            { text: "Follow Chris", href: "https://chrispirillo.bio.link/", target: "_blank" },
+            { text: "Hire Chris", action: "openHireChrisModal" },
+            { text: "Smack Chris", href: "/arcade/" }
+        ];
+
+        function populateDropdown(menuElement) {
+            menuElement.innerHTML = ''; 
+            pirilloDropdownItems.forEach(item => {
+                if (item.action) {
+                    const buttonLink = document.createElement('button');
+                    buttonLink.classList.add('dropdown-item-button-link');
+                    buttonLink.textContent = item.text;
+                    buttonLink.onclick = () => {
+                        window[item.action](); 
+                    }
+                    menuElement.appendChild(buttonLink);
+                } else {
+                    const link = document.createElement('a');
+                    link.href = item.href;
+                    link.textContent = item.text;
+                    if (item.target) {
+                        link.target = item.target;
+                        link.rel = "noopener noreferrer"; 
+                    }
+                    menuElement.appendChild(link);
+                }
+            });
+        }
+
+        function initializeThemeAndKonamiCode() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.remove('dark-mode');
+            } else {
+                if (!document.body.classList.contains('dark-mode')) {
+                    document.body.classList.add('dark-mode');
+                }
+            }
+
+            const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'];
+            let userInputSequence = [];
+
+            document.addEventListener('keydown', function(e) {
+                userInputSequence.push(e.key);
+                userInputSequence = userInputSequence.slice(-konamiSequence.length); 
+
+                if (JSON.stringify(userInputSequence) === JSON.stringify(konamiSequence)) {
+                    document.body.classList.toggle('dark-mode');
+                    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+                    userInputSequence = []; 
+                }
+            });
+        }
+        
+        function toggleDropdown(menuElement, toggleButton) {
+            const isShown = menuElement.classList.toggle('show-dropdown');
+            toggleButton.setAttribute('aria-expanded', isShown);
+        }
+
+        if (headerDropdownToggle && headerDropdownMenu) {
+            populateDropdown(headerDropdownMenu); 
+            headerDropdownToggle.addEventListener('click', function(event) {
+                event.stopPropagation(); 
+                toggleDropdown(headerDropdownMenu, headerDropdownToggle);
+            });
+        }
+
+        window.addEventListener('click', function(event) { 
+            if (headerDropdownMenu && !headerDropdownMenu.contains(event.target) && !headerDropdownToggle.contains(event.target)) {
+                if (headerDropdownMenu.classList.contains('show-dropdown')) {
+                    headerDropdownMenu.classList.remove('show-dropdown');
+                    headerDropdownToggle.setAttribute('aria-expanded', 'false');
+                }
+            }
+            if (hireChrisModalElement && event.target === hireChrisModalElement) {
+                closeHireChrisModal();
+            }
+        });
+        
+        function buildHireChrisModalSlides() {
+            hireChrisModalBody.innerHTML = '';
+            hireChrisModalNavigation.innerHTML = '';
+            
+            hireChrisModalSlidesData.forEach((slideData, index) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.classList.add('modal-slide');
+                let content = `<h3>${slideData.title}</h3>`;
+                if (slideData.items && slideData.items.length > 0) {
+                    content += '<ul>';
+                    slideData.items.forEach(item => {
+                        const iconClass = item.icon || 'fas fa-chevron-right';
+                        content += `<li><i class="${iconClass}" aria-hidden="true"></i><span>${item.text}</span></li>`;
+                    });
+                    content += '</ul>';
+                }
+                if (slideData.footer) content += slideData.footer;
+                slideDiv.innerHTML = content;
+                hireChrisModalBody.appendChild(slideDiv);
+
+                const navButton = document.createElement('button');
+                navButton.classList.add('modal-nav-button');
+                navButton.textContent = slideData.id;
+                navButton.dataset.targetSlide = index;
+                navButton.onclick = () => showHireChrisSlide(index);
+                hireChrisModalNavigation.appendChild(navButton);
+            });
+            showHireChrisSlide(0); 
+        }
+
+        function showHireChrisSlide(index) {
+            currentHireChrisSlide = index;
+            const slides = hireChrisModalBody.querySelectorAll('.modal-slide');
+            slides.forEach((slide, i) => {
+                slide.style.display = (i === index) ? 'block' : 'none'; 
+                slide.classList.toggle('active', i === index);
+            });
+            const navButtons = hireChrisModalNavigation.querySelectorAll('.modal-nav-button');
+            navButtons.forEach((button, i) => button.classList.toggle('active', i === index));
+        }
+        
+        window.openHireChrisModal = function() {
+            if (hireChrisModalElement) {
+                if (!hireChrisModalBody.hasChildNodes()) { 
+                    buildHireChrisModalSlides(); 
+                }
+                hireChrisModalElement.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; 
+            }
+            if (headerDropdownMenu.classList.contains('show-dropdown')) {
+                headerDropdownMenu.classList.remove('show-dropdown');
+                headerDropdownToggle.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function closeHireChrisModal() {
+            if (hireChrisModalElement) {
+                hireChrisModalElement.style.display = 'none';
+                document.body.style.overflow = 'auto'; 
+            }
+        }
+
+        function filterTools() {
+            const filter = document.getElementById('find-tool-input').value.toUpperCase();
+            const ul = document.getElementById('tools-ul');
+            const liElements = ul.getElementsByTagName('li'); 
+            for (let i = 0; i < liElements.length; i++) {
+                const button = liElements[i].getElementsByTagName('button')[0];
+                if (button) { 
+                    const buttonText = button.textContent || button.innerText; 
+                    if (buttonText.toUpperCase().indexOf(filter) > -1) {
+                        liElements[i].classList.remove('hidden-tool');
+                    } else {
+                        liElements[i].classList.add('hidden-tool');
+                    }
+                }
+            }
+        }
+
+        function selectTool(buttonElement, toolName, controlGroupId = null) {
+            currentToolName = toolName; 
+            if (currentActiveButton) {
+                currentActiveButton.classList.remove('active-tool-button');
+            }
+            buttonElement.classList.add('active-tool-button');
+            currentActiveButton = buttonElement;
+            showControls(controlGroupId);
+            
+            const inputTextarea = document.getElementById('inputText');
+            const outputTextarea = document.getElementById('outputTextarea'); 
+            const refreshIndicator = document.getElementById('refreshOutputIndicator');
+            
+            isOutputStale = false;
+            outputTextarea.classList.remove('stale');
+            refreshIndicator.style.display = 'none';
+            
+            let currentPlaceholder = "Enter your text here...";
+            inputTextarea.classList.remove('input-not-used');
+
+            if (['generateLoremIpsum', 'generateUuid'].includes(toolName)) {
+                currentPlaceholder = "Input not directly used for this tool.";
+                inputTextarea.classList.add('input-not-used');
+            } else if ((['romanToNum', 'numToRoman'].includes(toolName) && controlGroupId) || 
+                       (['characterCode'].includes(toolName) && controlGroupId)) {
+                 currentPlaceholder = "Input for this tool is in the controls above.";
+                 inputTextarea.classList.add('input-not-used');
+            } else if (toolName === 'natoToText') {
+                currentPlaceholder = "Enter NATO phonetic text (e.g., Alpha Bravo Charlie)...";
+            }
+            
+            inputTextarea.placeholder = currentPlaceholder;
+
+            if (!controlGroupId && !toolName.endsWith('Action')) {
+                 applyToolAction(toolName); 
+            } else if (controlGroupId) {
+                 outputTextarea.value = "Configure options and click the tool's action button.";
+            }
+        }
+        
+        function showControls(controlGroupId) {
+            document.querySelectorAll('.tool-specific-controls-container .control-group')
+                .forEach(group => group.classList.remove('active-controls'));
+            if (controlGroupId) {
+                const activeGroup = document.getElementById(controlGroupId);
+                if (activeGroup) activeGroup.classList.add('active-controls');
+            }
+        }
+
+        function applyPrefixSuffix() { applyToolAction(currentToolName === 'addPrefix' ? 'addPrefixAction' : 'addSuffixAction'); }
+        function applyLinesContaining() { applyToolAction(currentToolName === 'findLinesContaining' ? 'findLinesContainingAction' : 'removeLinesContainingAction'); }
+        function applyDelimiterTool() { applyToolAction(currentToolName === 'splitByDelimiter' ? 'splitByDelimiterAction' : 'joinByDelimiterAction'); }
+        function applyRomanNumeralTool() { applyToolAction(currentToolName === 'numToRoman' ? 'numToRomanAction' : 'romanToNumAction');}
+        function applyTabSpaceTool() { applyToolAction(currentToolName === 'tabsToSpaces' ? 'tabsToSpacesAction' : 'spacesToTabsAction');}
+        function applyQuoteTool() { applyToolAction(currentToolName === 'addQuotesToLines' ? 'addQuotesToLinesAction' : 'removeQuotesFromLinesAction');}
+
+        function clearAll() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputTextarea').value = ''; 
+            document.getElementById('inputText').placeholder = "Enter your text here...";
+            document.getElementById('inputText').classList.remove('input-not-used');
+            document.getElementById('outputTextarea').classList.remove('stale'); 
+            document.getElementById('refreshOutputIndicator').style.display = 'none';
+            showControls(null);
+            if (currentActiveButton) {
+                currentActiveButton.classList.remove('active-tool-button');
+                currentActiveButton = null;
+            }
+            currentToolName = null;
+            lastAppliedToolDetails = { name: null, controlValues: {} }; 
+            isOutputStale = false;
+        }
+        
+        document.getElementById('inputText').addEventListener('input', () => {
+            if (lastAppliedToolDetails.name) { 
+                isOutputStale = true;
+                document.getElementById('outputTextarea').classList.add('stale'); 
+                document.getElementById('refreshOutputIndicator').style.display = 'block';
+            }
+        });
+
+        document.getElementById('refreshOutputIndicator').addEventListener('click', () => {
+            if (lastAppliedToolDetails.name) {
+                applyToolAction(lastAppliedToolDetails.name); 
+            }
+        });
+
+        async function applyToolAction(actionName) { 
+            const inputTextarea = document.getElementById('inputText');
+            const outputTextarea = document.getElementById('outputTextarea'); 
+            let text = inputTextarea.value;
+            let result = '';
+            
+            const toolToExecute = actionName.endsWith('Action') ? actionName : (currentToolName === actionName ? currentToolName : actionName) ;
+
+            isOutputStale = false;
+            outputTextarea.classList.remove('stale');
+            document.getElementById('refreshOutputIndicator').style.display = 'none';
+            
+            let currentPlaceholder = "Enter your text here...";
+            inputTextarea.classList.remove('input-not-used');
+             if (['generateLoremIpsumAction', 'generateUuid'].includes(toolToExecute)) {
+                currentPlaceholder = "Input not directly used for this tool.";
+                inputTextarea.classList.add('input-not-used');
+            } else if (['numToRomanAction', 'romanToNumAction', 'characterCodeAction'].includes(toolToExecute) && 
+                       document.getElementById(currentToolName === 'numToRoman' || currentToolName === 'romanToNum' ? 'roman-numeral-controls' : (currentToolName === 'characterCode' ? 'char-code-controls' : ''))?.classList.contains('active-controls') ) {
+                 currentPlaceholder = "Input for this tool is in the controls above.";
+                 inputTextarea.classList.add('input-not-used');
+            } else if (toolToExecute === 'natoToText') {
+                currentPlaceholder = "Enter NATO phonetic text (e.g., Alpha Bravo Charlie)...";
+            }
+            inputTextarea.placeholder = currentPlaceholder;
+
+            const normalizeText = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            switch (toolToExecute) {
+                case 'toUpperCase': 
+                    result = text.toUpperCase(); 
+                    break;
+                case 'toLowerCase': 
+                    result = text.toLowerCase(); 
+                    break;
+                case 'toTitleCase': 
+                    result = text.toLowerCase().split(' ').map(w=>w.length>0?w.charAt(0).toUpperCase()+w.slice(1):'').join(' '); 
+                    break;
+                case 'toSentenceCase': result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s+\w)/g, c=>c.toUpperCase()); break;
+                case 'swapCase': result = text.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join(''); break;
+                case 'toSarcasticCase': result = text.split('').map((c,i) => i%2===0 ? c.toLowerCase() : c.toUpperCase()).join(''); break;
+                case 'toSpongeBobCase': result = text.split('').map(c => Math.random() > 0.5 ? c.toUpperCase() : c.toLowerCase()).join(''); break;
+                case 'wordCount': const wc=text.trim()?text.trim().split(/\s+/):[]; result=`Word Count: ${wc.length}`; break;
+                case 'charCountWithSpaces': result = `Character Count (w/ spaces): ${text.length}`; break;
+                case 'charCountNoSpaces': result = `Character Count (no spaces): ${text.replace(/\s/g, '').length}`; break;
+                case 'lineCount': const lc=text.split(/\r\n|\r|\n/); result=`Line Count: ${text===''?0:lc.length}`; break;
+                case 'countSentences': const sents = text.match(/[^\.!\?]+[\.!\?]+/g) || []; result = `Sentence Count: ${sents.length}`; break;
+                case 'countParagraphs': result = `Paragraphs: ${text.split(/\n\s*\n/).filter(p=>p.trim()).length}`; break;
+                case 'countUniqueWords': const uw = new Set(text.toLowerCase().match(/\b\w+\b/g) || []); result = `Unique Words: ${uw.size}`; break;
+                case 'countVowels': const v = text.match(/[aeiou]/gi) || []; result = `Vowel Count: ${v.length}`; break;
+                case 'countConsonants': const cons = text.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []; result = `Consonant Count: ${cons.length}`; break;
+                case 'removeExtraSpaces': result = text.replace(/\s+/g, ' ').trim(); break;
+                case 'removeAllSpaces': result = text.replace(/\s/g, ''); break;
+                case 'removeLineBreaks': result = text.replace(/\r\n|\r|\n/g, ' ').trim(); break;
+                case 'removeBlankLines': result = text.split(/\r\n|\r|\n/).filter(l=>l.trim()!=='').join('\n'); break;
+                case 'removeDuplicateLines': const rdl=text.split(/\r\n|\r|\n/); result=[...new Set(rdl.filter(l=>l.trim()!==''))].join('\n'); break;
+                case 'removePunctuation': result = text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\[\]?"']/g,"").replace(/\s\s+/g, ' '); break;
+                case 'removeAccents': result = normalizeText(text); break;
+                case 'keepOnlyAlpha': result = text.replace(/[^a-zA-Z]/g, ''); break;
+                case 'keepOnlyAlphanumeric': result = text.replace(/[^a-zA-Z0-9]/g, ''); break;
+                case 'keepOnlyNumeric': result = text.replace(/[^0-9]/g, ''); break;
+                case 'sortLinesAZ': result = text.split(/\r\n|\r|\n/).filter(l=>l.trim()!=='').sort((a,b)=>a.localeCompare(b)).join('\n'); break;
+                case 'sortLinesZA': result = text.split(/\r\n|\r|\n/).filter(l=>l.trim()!=='').sort((a,b)=>b.localeCompare(a)).join('\n'); break;
+                case 'reverseText': result = text.split('').reverse().join(''); break;
+                case 'reverseEachLine': result = text.split(/\r\n|\r|\n/).map(l=>l.split('').reverse().join('')).join('\n'); break;
+                case 'reverseWordsInLines': result = text.split(/\r\n|\r|\n/).map(l => l.split(' ').reverse().join(' ')).join('\n'); break;
+                case 'addLineNumbers': result = text.split(/\r\n|\r|\n/).map((l,i)=>`${i+1}. ${l}`).join('\n'); break;
+                case 'findAndReplaceAction': const f=document.getElementById('find-text').value; const r=document.getElementById('replace-text').value; result=f?text.split(f).join(r):"Enter text to find."; break;
+                case 'addPrefixAction': const pre=document.getElementById('prefix-suffix-text').value; result=text.split(/\r\n|\r|\n/).map(l=>`${pre}${l}`).join('\n'); break;
+                case 'addSuffixAction': const suf=document.getElementById('prefix-suffix-text').value; result=text.split(/\r\n|\r|\n/).map(l=>`${l}${suf}`).join('\n'); break;
+                case 'addQuotesToLinesAction':
+                case 'removeQuotesFromLinesAction':
+                    const quoteChar = document.getElementById('quote-type-select').value;
+                    if (toolToExecute === 'addQuotesToLinesAction') {
+                        result = text.split(/\r\n|\r|\n/).map(l => `${quoteChar}${l}${quoteChar}`).join('\n');
+                    } else { 
+                        result = text.split(/\r\n|\r|\n/).map(l => {
+                            let line = l;
+                            if (line.startsWith(quoteChar)) line = line.substring(1);
+                            if (line.endsWith(quoteChar)) line = line.substring(0, line.length - 1);
+                            return line;
+                        }).join('\n');
+                    }
+                    break;
+                case 'base64Encode': try{result=btoa(unescape(encodeURIComponent(text)));}catch(e){result="Error: Invalid chars for Base64 encode.";} break;
+                case 'base64Decode': try{result=decodeURIComponent(escape(atob(text)));}catch(e){result="Error: Invalid Base64 string.";} break;
+                case 'generateLoremIpsumAction': 
+                    const np=parseInt(document.getElementById('lorem-paragraphs').value)||1; 
+                    const lb="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."; 
+                    let la=[]; for(let i=0;i<np;i++){let pw=lb.split(' ').sort(()=>0.5-Math.random()); let pl=Math.floor(Math.random()*20)+25; let p=pw.slice(0,pl).join(' '); la.push(p.charAt(0).toUpperCase()+p.slice(1)+'.');} 
+                    result=la.join('\n\n'); 
+                    break;
+                case 'extractURLs': const ur=/(?:(?:https?|ftp):\/\/|www\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/ig; result=(text.match(ur)||[]).join('\n')||"No URLs found."; break;
+                case 'htmlEncode': const he=document.createElement('textarea'); he.textContent=text; result=he.innerHTML; break;
+                case 'htmlDecode': const hd=document.createElement('textarea'); hd.innerHTML=text; result=hd.value; break;
+                case 'urlEncode': try{result=encodeURIComponent(text);}catch(e){result="Error URL encoding.";} break;
+                case 'urlDecode': try{result=decodeURIComponent(text);}catch(e){result="Error URL decoding.";} break;
+                case 'trimEachLine': result=text.split(/\r\n|\r|\n/).map(l=>l.trim()).join('\n'); break;
+                case 'toKebabCase': result=text.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)?.map(x=>x.toLowerCase()).join('-')||''; break;
+                case 'toSnakeCase': result=text.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)?.map(x=>x.toLowerCase()).join('_')||''; break;
+                case 'toCamelCase': let sc_str=text.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)?.map(x=>x.slice(0,1).toUpperCase()+x.slice(1).toLowerCase()).join('')||''; result=sc_str.slice(0,1).toLowerCase()+sc_str.slice(1); break;
+                case 'toPascalCase': result=text.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)?.map(x=>x.slice(0,1).toUpperCase()+x.slice(1).toLowerCase()).join('')||''; break;
+                case 'stripHtmlTags': const ds=document.createElement('div'); ds.innerHTML=text; result=ds.textContent||ds.innerText||""; break;
+                case 'extractEmails': const er=/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g; result=(text.match(er)||[]).join('\n')||"No emails found."; break;
+                case 'extractNumbers': const nr=/-?\d+(\.\d+)?/g; result=(text.match(nr)||[]).join('\n')||"No numbers found."; break;
+                case 'countCharOccurrencesAction': const ctc=document.getElementById('char-to-count').value; result=ctc?`Occurrences of "${ctc}": ${text.split(ctc).length-1}`:"Enter a char."; break;
+                case 'countWordOccurrencesAction': const wttc=document.getElementById('word-to-count').value; const cs=document.getElementById('word-count-case-sensitive').checked; if(wttc){const tt=cs?text:text.toLowerCase(); const tw=cs?wttc:wttc.toLowerCase(); const rx=new RegExp(`\\b${tw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\b`,'g'); result=`Occurrences of "${wttc}": ${(tt.match(rx)||[]).length}`;} else{result="Enter a word.";} break;
+                case 'findLinesContainingAction': const sfl=document.getElementById('string-to-find-lines').value; result=sfl?text.split(/\r\n|\r|\n/).filter(l=>l.includes(sfl)).join('\n'):"Enter text."; break;
+                case 'removeLinesContainingAction': const srl=document.getElementById('string-to-find-lines').value; result=srl?text.split(/\r\n|\r|\n/).filter(l=>!l.includes(srl)).join('\n'):"Enter text."; break;
+                case 'generateUuid': 
+                    if(crypto && crypto.randomUUID){result=crypto.randomUUID();} 
+                    else{result='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{var r0=Math.random()*16|0,v0=c=='x'?r0:(r0&0x3|0x8); return v0.toString(16);});} 
+                    break;
+                case 'shuffleLines': let sls=text.split(/\r\n|\r|\n/); for(let i=sls.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [sls[i],sls[j]]=[sls[j],sls[i]];} result=sls.join('\n'); break;
+                case 'splitByDelimiterAction': const sd=document.getElementById('delimiter-text').value; result=(sd!==undefined)?text.split(sd).join('\n'):"Enter delimiter."; break;
+                case 'joinByDelimiterAction': const jd=document.getElementById('delimiter-text').value; result=text.split(/\r\n|\r|\n/).join(jd||''); break;
+                case 'commaToNewline': result=text.replace(/,/g,'\n'); break;
+                case 'newlineToComma': result=text.replace(/\r\n|\r|\n/g,','); break;
+                case 'csvToListAction': const lt=document.getElementById('list-type-select').value; const idl=document.getElementById('list-input-delimiter-select').value==='\\n'?/\r\n|\r|\n/:','; const itms=text.split(idl).map(i=>i.trim()).filter(i=>i); result=itms.length>0?`<${lt}>\n${itms.map(i=>`  <li>${i}</li>`).join('\n')}\n</${lt}>`:"No items."; break;
+                case 'sortCommaSeparated': result=text.split(',').map(s=>s.trim()).filter(s=>s).sort((a,b)=>a.localeCompare(b)).join(', '); break;
+                case 'removeDuplicateCsvItems': result=[...new Set(text.split(',').map(s=>s.trim()).filter(s=>s))].join(', '); break;
+                case 'countCsvItems': result=`Comma Items: ${text.split(',').filter(s=>s.trim()).length}`; break;
+                case 'numToRomanAction': 
+                    const ntrInput = document.getElementById('roman-numeral-input').value;
+                    if (!ntrInput.trim()) { result = "Please enter a number."; break; }
+                    const ntr=parseInt(ntrInput); 
+                    if(isNaN(ntr)||ntr<1||ntr>3999){result="Num 1-3999";break;} 
+                    const rm={M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1}; let rom=''; let n_val=ntr; 
+                    for(let k in rm){while(n_val>=rm[k]){rom+=k;n_val-=rm[k];}} result=rom; 
+                    break;
+                case 'romanToNumAction': 
+                    const rtnInput = document.getElementById('roman-numeral-input').value.toUpperCase(); 
+                    if (!rtnInput.trim()) { result = "Please enter a Roman numeral."; break; }
+                    const rv=(r_char)=>({I:1,V:5,X:10,L:50,C:100,D:500,M:1000}[r_char]||0); let ar=0; 
+                    for(let i=0;i<rtnInput.length;i++){rv(rtnInput[i])<rv(rtnInput[i+1])?ar-=rv(rtnInput[i]):ar+=rv(rtnInput[i]);} 
+                    result=ar>0&&ar<4000?ar.toString():"Invalid Roman."; 
+                    break;
+                case 'charFrequency': const cf={}; text.split('').forEach(c=>cf[c]=(cf[c]||0)+1); result=Object.entries(cf).sort((a,b)=>b[1]-a[1]).map(([ch,cn])=>`'${ch}': ${cn}`).join('\n'); break;
+                case 'wordFrequency': const wf={}; text.toLowerCase().match(/\b\w+\b/g)?.forEach(w=>wf[w]=(wf[w]||0)+1); result=Object.entries(wf).sort((a,b)=>b[1]-a[1]).map(([w,c_val])=>`${w}: ${c_val}`).join('\n'); break;
+                case 'findLongestLine': result=text.split(/\r\n|\r|\n/).reduce((a,b)=>a.length>b.length?a:b,""); break;
+                case 'avgWordLength': const awl=text.match(/\b\w+\b/g)||[]; result=awl.length>0?`Avg Word Len: ${(awl.reduce((a,w)=>a+w.length,0)/awl.length).toFixed(2)}`:"No words."; break;
+                case 'extractBetweenDelimitersAction': const sDel=document.getElementById('delimiter-start').value; const eDel=document.getElementById('delimiter-end').value; if(!sDel||!eDel){result="Delimiters needed.";break;} const esr=(s_val)=>s_val.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); const bRx=new RegExp(esr(sDel)+'(.*?)'+esr(eDel),'gs'); const ms=[]; let m_match; while((m_match=bRx.exec(text))!==null)ms.push(m_match[1]); result=ms.join('\n')||"No matches."; break;
+                case 'extractIPs': const ipr=/\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b/g; result=(text.match(ipr)||[]).join('\n')||"No IPs."; break;
+                case 'extractHashtags': const htr=/#([a-zA-Z0-9_]+)/g; result=(text.match(htr)||[]).join('\n')||"No hashtags."; break;
+                case 'extractMentions': const mtr=/@([a-zA-Z0-9_]+)/g; result=(text.match(mtr)||[]).join('\n')||"No mentions."; break;
+                case 'markdownToHtml': result=text.replace(/^###### (.*$)/gim,'<h6>$1</h6>').replace(/^##### (.*$)/gim,'<h5>$1</h5>').replace(/^#### (.*$)/gim,'<h4>$1</h4>').replace(/^### (.*$)/gim,'<h3>$1</h3>').replace(/^## (.*$)/gim,'<h2>$1</h2>').replace(/^# (.*$)/gim,'<h1>$1</h1>').replace(/\*\*(.*?)\*\*/gim,'<strong>$1</strong>').replace(/\*(.*?)\*/gim,'<em>$1</em>').replace(/`(.*?)`/gim,'<code>$1</code>').replace(/\[(.*?)\]\((.*?)\)/gim,'<a href="$2">$1</a>').replace(/^\s*([-*+]) (.*)/gim, (match, bullet, item) => `<ul>\n  <li>${item}</li>\n</ul>`).replace(/^\s*(\d+)\. (.*)/gim, (match, number, item) => `<ol>\n  <li>${item}</li>\n</ol>`).replace(/\n\n/g,'<p>').replace(/<\/ul>\n<ul>/g,'').replace(/<\/ol>\n<ol>/g,''); break;
+                case 'markdownToPlainText': 
+                    let htmlTmpForPlain = text.replace(/^###### (.*$)/gim,'$1\n').replace(/^##### (.*$)/gim,'$1\n').replace(/^#### (.*$)/gim,'$1\n').replace(/^### (.*$)/gim,'$1\n').replace(/^## (.*$)/gim,'$1\n').replace(/^# (.*$)/gim,'$1\n') 
+                                        .replace(/\*\*(.*?)\*\*/gim,'$1').replace(/\*(.*?)\*/gim,'$1') 
+                                        .replace(/`(.*?)`/gim,'$1')    
+                                        .replace(/\[(.*?)\]\((.*?)\)/gim,'$1 ($2)') 
+                                        .replace(/^\s*[-*+] (.*)/gim,'- $1') 
+                                        .replace(/^\s*\d+\. (.*)/gim,'$1. $2')
+                                        .replace(/<br\s*\/?>/gi, '\n');
+                    const dpt=document.createElement('div'); dpt.innerHTML=htmlTmpForPlain; result=(dpt.textContent||dpt.innerText||"").replace(/\n\n+/g, '\n\n').trim(); 
+                    break;
+                case 'upsideDownText': const udm={"a":"ɐ","b":"q","c":"ɔ","d":"p","e":"ǝ","f":"ɟ","g":"ƃ","h":"ɥ","i":"ı","j":"ɾ","k":"ʞ","l":"l","m":"ɯ","n":"u","o":"o","p":"d","q":"b","r":"ɹ","s":"s","t":"ʇ","u":"n","v":"ʌ","w":"ʍ","x":"x","y":"ʎ","z":"z", "0":"0","1":"Ɩ","2":"ᄅ","3":"Ɛ","4":"ㄣ","5":"ϛ","6":"9","7":"ㄥ","8":"8","9":"6",".":"˙",",":"'","?":"¿","!":"¡"}; result=text.split('').reverse().map(c=>udm[c.toLowerCase()]||c).join(''); break;
+                case 'mirrorText': const mirm={"a":"ɒ","b":"d","c":"ɔ","d":"b","e":"ɘ","f":"Ꮈ","g":"ǫ","h":"ʜ","i":"i","j":"į","k":"ʞ","l":"|","m":"m","n":"n","o":"o","p":"q","q":"p","r":"Я","s":"ƨ","t":"ƚ","u":"u","v":"v","w":"w","x":"x","y":"γ","z":"ƹ"}; result=text.split('').map(c=>mirm[c.toLowerCase()]||c).reverse().join(''); break;
+                case 'randomizeWordOrderInLines': result=text.split(/\r\n|\r|\n/).map(l=>l.split(' ').sort(()=>Math.random()-0.5).join(' ')).join('\n'); break;
+                case 'slugify': result=text.toString().toLowerCase().trim().replace(/\s+/g,'-').replace(/[^\w-]+/g,'').replace(/--+/g,'-'); break;
+                case 'tabsToSpacesAction': const nsp=parseInt(document.getElementById('tab-space-count').value)||4; result=text.replace(/\t/g,' '.repeat(nsp)); break;
+                case 'spacesToTabsAction': const nspt=parseInt(document.getElementById('tab-space-count').value)||4; result=text.replace(new RegExp(' '.repeat(nspt),'g'),'\t'); break;
+                case 'convertLineEndingsAction': const te=document.getElementById('line-ending-select').value; result=text.replace(/\r\n|\r|\n/g,te==='CRLF'?'\r\n':(te==='CR'?'\r':'\n')); break;
+                case 'wordWrapAction': const wl=parseInt(document.getElementById('wrap-length').value); if(isNaN(wl) || wl <=0) {result="Invalid wrap length."; break;} const wws=text.split(' '); let cl_str=''; let wrpd=[]; for(const w of wws){if((cl_str+w).length>wl&&cl_str.length>0){wrpd.push(cl_str.trim());cl_str='';} cl_str+=w+' ';} if(cl_str.trim())wrpd.push(cl_str.trim()); result=wrpd.join('\n'); break;
+                case 'morseEncode': const mcMap={'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.','0':'-----',' ':'/'}; result=text.toUpperCase().split('').map(char=>mcMap[char]||char).join(' '); break; 
+                case 'morseDecode': const rMcMap=Object.fromEntries(Object.entries({'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.','0':'-----',' ':'/'}).map(([k,v])=>[v,k])); result=text.split(' ').map(code=>rMcMap[code]||(code==='/'?' ': (code.length > 0 ? '?' : ''))).join(''); break; 
+                case 'textToHex': result=Array.from(text).map(char=>char.charCodeAt(0).toString(16).padStart(2,'0')).join(''); break;
+                case 'hexToText': try{result=text.match(/.{1,2}/g)?.map(byte=>String.fromCharCode(parseInt(byte,16))).join('')||(text ? "Invalid Hex" : "");}catch(e){result="Error: Invalid Hex.";} break; 
+                case 'textToBinary': result=Array.from(text).map(char=>char.charCodeAt(0).toString(2).padStart(8,'0')).join(' '); break;
+                case 'binaryToText': try{result=text.split(' ').filter(b=>b).map(byte=>String.fromCharCode(parseInt(byte,2))).join('');}catch(e){result="Error: Invalid Binary.";} break;
+                case 'zalgoTextAction': const intensity=document.getElementById('zalgo-intensity').value; const zc=['\u0300','\u0301','\u0302','\u0303','\u0304','\u0305','\u0306','\u0307','\u0308','\u0309','\u030a','\u030b','\u030c','\u030d','\u030e','\u030f','\u0310','\u0311','\u0312','\u0313','\u0314','\u0315','\u0316','\u0317','\u0318','\u0319','\u031a','\u031b','\u031c','\u031d','\u031e','\u031f','\u0320','\u0321','\u0322','\u0323','\u0324','\u0325','\u0326','\u0327','\u0328','\u0329','\u032a','\u032b','\u032c','\u032d','\u032e','\u032f','\u0330','\u0331','\u0332','\u0333','\u0334','\u0335','\u0336','\u0337','\u0338','\u0339','\u033a','\u033b','\u033c','\u033d','\u033e','\u033f','\u0340','\u0341','\u0342','\u0343','\u0344','\u0345','\u0346','\u0347','\u0348','\u0349','\u034a','\u034b','\u034c','\u034d','\u034e','\u034f','\u0350','\u0351','\u0352','\u0353','\u0354','\u0355','\u0356','\u0357','\u0358','\u0359','\u035a','\u035b','\u035c','\u035d','\u035e','\u035f','\u0360','\u0361','\u0362','\u0363','\u0364','\u0365','\u0366','\u0367','\u0368','\u0369','\u036a','\u036b','\u036c','\u036d','\u036e','\u036f']; let lvls={'mini':2,'normal':5,'maxi':10}[intensity]||5; result=text.split('').map(char=>char+Array.from({length:Math.floor(Math.random()*lvls)+1},()=>zc[Math.floor(Math.random()*zc.length)]).join('')).join(''); break;
+                case 'rot13Cipher': result=text.replace(/[a-zA-Z]/g,c_char=>String.fromCharCode((c_char<="Z"?90:122)>=(c_char=c_char.charCodeAt(0)+13)?c_char:c_char-26)); break;
+                case 'characterCodeAction': 
+                    const charForCode = document.getElementById('char-for-code').value; 
+                    result = charForCode ? `"${charForCode}": Dec: ${charForCode.charCodeAt(0)}, Hex: ${charForCode.charCodeAt(0).toString(16)}` : "Enter a character."; 
+                    break;
+                case 'textToPirateSpeak': const pirateDict={'hello':'ahoy','friend':'matey','money':'booty','treasure':'booty','is':'be','are':'be','was':'were','my':'me','your':'yer','you':'ye','man':'scurvy dog','girl':'lass','boy':'lad','strong':'heave ho','the':'th\''}; result=text.toLowerCase().split(' ').map(w=>pirateDict[w]||w).join(' ').replace(/\./g,'! Shiver me timbers!'); break;
+                case 'textToYodaSpeak': result=text.split('. ').map(s_val=>{let pts=s_val.split(', '); if(pts.length>1){let v_val=pts.pop(); return `${v_val}, ${pts.join(', ')}. Hmm.`;} let wds=s_val.split(' '); if(wds.length>2){return `${wds.slice(2).join(' ')} ${wds.slice(0,2).join(' ')}. Yes.`;} return s_val;}).join(' '); break;
+                case 'textToOldEnglish': const oeMap = {'you':'thou','your':'thy','are':'art','is':'is','the':'ye','hello':'hail','good':'goodly','friend':'comrade','battle':'fray','go':'wend','will':'wilt','have':'hast'}; result = text.toLowerCase().split(' ').map(w => oeMap[w] || (w.endsWith('s') && w.length > 3 && !['is','was','has'].includes(w) ? w.slice(0,-1)+'eth' : w) ).join(' '); break;
+                case 'scrambleLettersInWords': result=text.split(' ').map(w=>{if(w.length<4)return w; const mid=w.substring(1,w.length-1).split('').sort(()=>0.5-Math.random()).join(''); return w[0]+mid+w[w.length-1];}).join(' '); break;
+                case 'textToLeetSpeak': const leetMap={'a':'4','e':'3','g':'6','i':'1','o':'0','s':'5','t':'7','l':'|','b':'8'}; result=text.toLowerCase().split('').map(c_char=>leetMap[c_char]||c_char).join(''); break;
+                case 'textToSpacedOut': result=text.split('').join(' '); break;
+                case 'textToClappingEmojis': result=text.split(' ').join('👏'); break;
+                case 'textToVaporwave': const vaporwaveRange=[0xFF01,0xFF5E]; result=text.split('').map(c_char=>{const code=c_char.charCodeAt(0); if(code>=0x21&&code<=0x7E){return String.fromCharCode(code+vaporwaveRange[0]-0x21);} return c_char;}).join(''); break;
+                case 'textToNato': const natoMap={'A':'Alpha','B':'Bravo','C':'Charlie','D':'Delta','E':'Echo','F':'Foxtrot','G':'Golf','H':'Hotel','I':'India','J':'Juliett','K':'Kilo','L':'Lima','M':'Mike','N':'November','O':'Oscar','P':'Papa','Q':'Quebec','R':'Romeo','S':'Sierra','T':'Tango','U':'Uniform','V':'Victor','W':'Whiskey','X':'X-ray','Y':'Yankee','Z':'Zulu'}; result=text.toUpperCase().split('').map(c_char=>natoMap[c_char]||c_char).join(' '); break;
+                case 'natoToText': const revNatoMap=Object.fromEntries(Object.entries({'A':'Alpha','B':'Bravo','C':'Charlie','D':'Delta','E':'Echo','F':'Foxtrot','G':'Golf','H':'Hotel','I':'India','J':'Juliett','K':'Kilo','L':'Lima','M':'Mike','N':'November','O':'Oscar','P':'Papa','Q':'Quebec','R':'Romeo','S':'Sierra','T':'Tango','U':'Uniform','V':'Victor','W':'Whiskey','X':'X-ray','Y':'Yankee','Z':'Zulu'}).map(([k,v])=>[v.toUpperCase(),k])); result=text.split(' ').map(w=>revNatoMap[w.toUpperCase()]||(w.length===1?w:'')).join(''); break;
+                case 'textToStrikethrough': result=text.split('').map(c_char=>c_char+'\u0336').join(''); break;
+                case 'repeatTextAction': const count=parseInt(document.getElementById('repeat-count').value)||1; const sep=document.getElementById('repeat-separator').value||''; result=Array(count).fill(text).join(sep); break;
+
+                default: result = "Tool not implemented or unknown action.";
+            }
+            outputTextarea.value = result;
+
+            lastAppliedToolDetails.name = toolToExecute;
+            lastAppliedToolDetails.controlValues = {}; 
+            if (toolToExecute.endsWith('Action')) {
+                const activeControlGroup = document.querySelector('.control-group.active-controls');
+                if (activeControlGroup) {
+                    activeControlGroup.querySelectorAll('input, select').forEach(input => {
+                        if (input.id) {
+                            lastAppliedToolDetails.controlValues[input.id] = input.type === 'checkbox' ? input.checked : input.value;
+                        }
+                    });
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeThemeAndKonamiCode();
+        });
+
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CQ4D3VQ3L" defer></script>
+    <script defer>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1CQ4D3VQ3L');
+    </script>
+</body>
+</html>
