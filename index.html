@@ -1566,7 +1566,7 @@
                                         .replace(/`(.*?)`/gim,'$1')    
                                         .replace(/\[(.*?)\]\((.*?)\)/gim,'$1 ($2)') 
                                         .replace(/^\s*[-*+] (.*)/gim,'- $1') 
-                                        .replace(/^\s*\d+\. (.*)/gim,'$1. $2')
+                                        .replace(/^\s*(\d+)\. (.*)/gim,'$1. $2')
                                         .replace(/<br\s*\/?>/gi, '\n');
                     const dpt=document.createElement('div'); dpt.innerHTML=htmlTmpForPlain; result=(dpt.textContent||dpt.innerText||"").replace(/\n\n+/g, '\n\n').trim(); 
                     break;
