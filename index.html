@@ -171,9 +171,23 @@
              justify-content: center; 
         }
         .header-title-at { font-weight: 400; margin-right: 2px; } 
-        .header-actions { 
-            display: flex; align-items: center; gap: 10px; 
-            flex-shrink: 0; 
+        .header-actions {
+            display: flex; align-items: center; gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-toggle-button {
+            background: none;
+            border: none;
+            color: var(--header-text);
+            font-size: 1.3em;
+            cursor: pointer;
+        }
+
+        @media (min-width: 600px) {
+            .sidebar-toggle-button {
+                display: none;
+            }
         }
         
         .dropdown { position: relative; display: inline-block; vertical-align: baseline; }
@@ -215,19 +229,23 @@
         }
         .show-dropdown { display: block; }
 
-        .container { 
-            display: flex; 
+        .container {
+            display: flex;
             flex-grow: 1; /* Performance: Takes remaining vertical space */
             min-height: 0; /* Performance: Crucial for flex children to shrink within a fixed height parent */
-            margin: 10px; 
-            gap: 10px; 
+            margin: 10px;
+            gap: 10px;
             overflow: hidden; /* Performance: Prevent this container from scrolling */
         }
 
+        .sidebar-overlay {
+            display: none;
+        }
+
         .tools-sidebar {
-            width: 240px; 
-            flex-shrink: 0; 
-            background-color: var(--sidebar-bg); 
+            width: 240px;
+            flex-shrink: 0;
+            background-color: var(--sidebar-bg);
             padding: 15px; 
             border-radius: 8px; 
             box-shadow: 0 1px 3px var(--shadow-color);
@@ -595,6 +613,36 @@
         /* The .container itself is overflow:hidden. If sidebar + main-content is too tall for viewport, content might be cut. */
         /* This adheres to "only tools list scrolls" but might be very compact on short mobile screens. */
 
+        @media (max-width: 599px) {
+            .tools-sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 80%;
+                max-width: 260px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
+            body.show-sidebar .tools-sidebar {
+                transform: translateX(0);
+            }
+            .sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 999;
+                display: none;
+            }
+            body.show-sidebar .sidebar-overlay {
+                display: block;
+            }
+        }
+
         @media (min-width: 600px) { 
             .sidebar-header {
                 flex-direction: row; 
@@ -825,8 +873,11 @@
             </span>
         </h1>
         <div class="header-actions">
+            <button id="sidebarToggle" class="sidebar-toggle-button" aria-label="Toggle tools sidebar"><i class="fas fa-bars"></i></button>
             </div>
     </header>
+
+    <div class="sidebar-overlay"></div>
 
     <div class="container">
         <aside class="tools-sidebar" role="complementary"> <div class="sidebar-header">
@@ -1572,6 +1623,18 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initializeThemeAndKonamiCode();
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const overlay = document.querySelector('.sidebar-overlay');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('show-sidebar');
+                });
+            }
+            if (overlay) {
+                overlay.addEventListener('click', () => {
+                    document.body.classList.remove('show-sidebar');
+                });
+            }
         });
 
     </script>
